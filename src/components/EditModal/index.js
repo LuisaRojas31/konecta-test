@@ -72,7 +72,7 @@ const EditModal = ({open, setOpen, productToEdit, setProductToEdit, handleEdit})
                 type='number'
               />
               <Container className='EditModal__containerButtons' maxWidth="md">
-                <Button type='submit' variant="contained" onClick={()=>{}}>Guardar</Button>
+                <Button type='submit' variant="contained">Guardar</Button>
                 <Button variant="outline" onClick={handleClose}>Cancelar</Button>
               </Container>
             </Box>

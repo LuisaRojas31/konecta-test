@@ -2,13 +2,17 @@ import { useState } from 'react';
 import { initialProducts  } from '../db/initalProducts';
 import { getFromLocalStorage, setLocalStorageItem } from '../utils/localStorage';
 import { productsKey } from '../utils/constants';
-import { titleConfirmationDeleteProduct, titleSucessConfirmationProduct, titleSucessConfirmationProductEdit } from './constants';
+import { getDateWithFormat } from '../utils/date';
+import { titleConfirmationDeleteProduct, titleSucessConfirmationProduct, 
+    titleSucessConfirmationProductEdit, titleSucessConfirmationProductCreate } from './constants';
 import Swal  from 'sweetalert2';
 
 export const useCrud = () => {
     const [products, setProducts] = useState([]);
     const [productToEdit, setProductToEdit] = useState([]);
     const [openModalEdit, setOpenModalEdit] = useState(false);
+    const [productToCreate, setProductToCreate] = useState(null);
+    const [openModalCreate, setOpenModalCreate] = useState(false);
 
     const getInitialData = () => {
         const localStorageProductos= getFromLocalStorage(productsKey);
@@ -48,6 +52,32 @@ export const useCrud = () => {
         setProductToEdit(product);
     }
 
+    const handleCreate = (e) => {
+        e.preventDefault();
+        const newTask = {
+            ...productToCreate,
+            id: 0,
+            creationDate: getDateWithFormat()
+        }
+    
+        let newArray = [];
+        const localStorageProductos = getFromLocalStorage(productsKey);
+        if(localStorageProductos){
+            newArray = [...JSON.parse(localStorageProductos), newTask];
+        }else{
+            newArray.push(newTask);
+        }
+    
+        newArray = newArray.map((item, index) => {        
+            item.id = index
+            return item;
+        });
+        setLocalStorageItem(productsKey, JSON.stringify(newArray));
+        setProducts(newArray);
+        setOpenModalCreate(false);
+        resultMessage(titleSucessConfirmationProductCreate);
+    }
+
     const confirmationMessage = async (title, message = '') => {
         const result = await Swal.fire({
             title: title,
@@ -85,6 +115,12 @@ export const useCrud = () => {
         productToEdit,
         setProductToEdit,
         handleEdit,
-        handleOpenModalEdit
+        handleOpenModalEdit,
+        setOpenModalCreate,
+        openModalCreate,
+        productToCreate,
+        setProductToCreate,
+        handleCreate,
+        setProducts
     }
 }

@@ -5,7 +5,7 @@ export const initialProducts = [
         reference: '123abc',
         price: 1000,
         weight: '200',
-        unitMeasure: 'ml',
+        unitMeasure: 3,
         category: 1,
         stock: 10,
         creationDate: '12/01/2022'
@@ -16,7 +16,7 @@ export const initialProducts = [
         reference: '124abc',
         price: 800,
         weight: '200',
-        unitMeasure: 'ml',
+        unitMeasure: 3,
         category: 1,
         stock: 8,
         creationDate: '12/01/2021'
@@ -27,7 +27,7 @@ export const initialProducts = [
         reference: '125xyz',
         price: 2500,
         weight: '100',
-        unitMeasure: 'gr',
+        unitMeasure: 2,
         category: 2,
         stock: 5,
         creationDate: '12/02/2022'
@@ -38,7 +38,7 @@ export const initialProducts = [
         reference: '887qww',
         price: 3500,
         weight: '200',
-        unitMeasure: 'gr',
+        unitMeasure: 2,
         category: 2,
         stock: 6,
         creationDate: '12/01/2022'

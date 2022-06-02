@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import Delete from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import { categories } from '../../db/categoriesList';
+import { unitMeasures } from '../../db/unitMeasure';
 import './styles.scss';
 
 const ProductsTable = ({products, handleDelete, handleOpenModalEdit}) => {
@@ -16,8 +17,13 @@ const ProductsTable = ({products, handleDelete, handleOpenModalEdit}) => {
     const category = categories.filter(item => item.id === id);
     if(category){
         return category[0].name;
-    }else{
-        return 'Sin categoria'
+    }
+  }
+
+  const getWeightName = (id) => {
+    const unitMeasure = unitMeasures.filter(item => item.id === id);
+    if(unitMeasure){
+        return unitMeasure[0].name;
     }
   }
   return (
@@ -54,7 +60,7 @@ const ProductsTable = ({products, handleDelete, handleOpenModalEdit}) => {
                     {product.reference}
                 </TableCell>
                 <TableCell align="right">{product.price.toLocaleString('en-IN', {style: 'currency',currency: 'COP', minimumFractionDigits: 2})}</TableCell>
-                <TableCell align="right">{`${product.weight} ${product.unitMeasure}`}</TableCell>
+                <TableCell align="right">{`${product.weight} ${getWeightName(product.unitMeasure)}`}</TableCell>
                 <TableCell component="th" scope="product">
                     {getCategoryName(product.category)}
                 </TableCell>
