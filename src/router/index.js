@@ -4,14 +4,15 @@ import Header from '../components/AppBar';
 import NotFound from '../components/NotFound';
 import Products from '../pages/Products';
 import Sales from '../pages/Sales';
+import { defaultRoute, salesRoute } from '../utils/constants';
 
 const App = () => {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="/sales" element={<Sales />} />
+        <Route path={defaultRoute} element={<Products />} />
+        <Route path={salesRoute} element={<Sales />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
