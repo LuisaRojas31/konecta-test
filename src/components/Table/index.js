@@ -43,7 +43,7 @@ const ProductsTable = ({products, handleDelete, handleOpenModalEdit}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
+          {products && products?.length > 0 && products.map((product) => (
             <TableRow
               key={product.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

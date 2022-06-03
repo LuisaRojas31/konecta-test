@@ -35,7 +35,7 @@ const Products = () => {
                 setProductToCreate(null);
             }}>Crear nuevo producto</Button>
             <h1>Lista de productos</h1>
-            {products.length > 0 && <Table products={products} handleDelete={handleDelete} handleOpenModalEdit={handleOpenModalEdit} />}
+            <Table products={products} handleDelete={handleDelete} handleOpenModalEdit={handleOpenModalEdit} />
             <EditModal open={openModalEdit} setOpen={setOpenModalEdit} productToEdit={productToEdit} setProductToEdit={setProductToEdit} handleEdit={handleEdit} />
             <CreateModal open={openModalCreate} setOpen={setOpenModalCreate} productoToCreate={productToCreate} setProductToCreate={setProductToCreate} handleCreate={handleCreate} />
         </Container>

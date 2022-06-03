@@ -15,12 +15,12 @@ export const useCrud = () => {
     const [openModalCreate, setOpenModalCreate] = useState(false);
 
     const getInitialData = () => {
-        const localStorageProductos= getFromLocalStorage(productsKey);
+        const localStorageProductos = getFromLocalStorage(productsKey);
         if(localStorageProductos){
             setProducts(JSON.parse(localStorageProductos))
         }else{
             setLocalStorageItem(productsKey, JSON.stringify(initialProducts));
-            setProducts(products);
+            setProducts(initialProducts);
         }
     }
 

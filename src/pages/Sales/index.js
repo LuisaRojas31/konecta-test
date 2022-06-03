@@ -16,10 +16,16 @@ const Sales = () => {
         idProducto: '',
         quantity: ''
     });
+    const [productSelected, setProductSelected] = useState(null);
 
     useEffect(()=>{
         getInitialData();
     }, [])
+
+    useEffect(()=>{
+        const productSelected = products.filter(item => item.id === sale?.idProducto)[0];
+        setProductSelected(productSelected);
+    }, [sale])
 
     const addSale = async (e) => {
         e.preventDefault();
@@ -82,8 +88,12 @@ const Sales = () => {
                     onChange={(e)=>{ setSale({...sale, quantity: e.target.value}) }}
                     type='number'
                 />
+                <Container  maxWidth="md">
+                    <h3>Precio: {productSelected?.price.toLocaleString('en-IN', {style: 'currency',currency: 'COP', minimumFractionDigits: 2})}</h3>
+                    <h3>Cantidad disponible: {productSelected?.stock}</h3>
+                </Container>
                  <Container className='SalesContainer__containerButtons' maxWidth="md">
-                <Button type='submit' variant="contained">Guardar</Button>
+                    <Button type='submit' variant="contained">Guardar</Button>
                 </Container>
             </Box>
         </Container>
